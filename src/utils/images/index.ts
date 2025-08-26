@@ -1,0 +1,22 @@
+export const IMAGES ={
+    BITCOIN: require('../../../assets/images/bitcoin.png'),
+    CHAT_ICON: require('../../../assets/images/chatIcon.png'),
+    FB_ICON: require('../../../assets/images/fbIcon.png'),
+    GOOGLE_ICON: require('../../../assets/images/googleIcon.png'),
+    HAND_ICON: require('../../../assets/images/handIcon.png'),
+    HEADER_LOGO: require('../../../assets/images/Header.png'),
+    HOME_ICON: require('../../../assets/images/homeIcon.png'),
+    INSTA_ICON: require('../../../assets/images/instaIcon.png'),
+    LOGIN_BG_IMAGE: require('../../../assets/images/loginImage.png'),
+    APPLOGO: require('../../../assets/images/Loopin_logo.png'),
+    MSG_ICON: require('../../../assets/images/msgIcon.png'),
+    PENCIL_ICON: require('../../../assets/images/pencilIcon.png'),
+    RATING_ICON: require('../../../assets/images/ratingIcon.png'),
+    TWITTER_ICON: require('../../../assets/images/twiterIcon.png'),   
+    ONBOARDING_LOGO: require('../../../assets/images/onBoardingLogo.png'),
+    BUNGEE: require('../../../assets/images/bungee.png'),
+    ETHERIUM: require('../../../assets/images/etherium.png'),
+    PROVY: require('../../../assets/images/provy.png'),
+    HEART_ICON: require('../../../assets/images/heart.png'),
+
+}

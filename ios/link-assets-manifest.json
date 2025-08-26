@@ -1,0 +1,25 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Newsreader_14pt-Bold.ttf",
+      "sha1": "7d3477547c1fc1c7cb036422dada0fb533d6ce59"
+    },
+    {
+      "path": "assets/fonts/Newsreader_9pt-Italic.ttf",
+      "sha1": "3d65411a52773d0f4040af2790da3f3a1f252f48"
+    },
+    {
+      "path": "assets/fonts/Newsreader_9pt-Medium.ttf",
+      "sha1": "e30b8eaa94645fb112e2c82d2bedc68d207e72a7"
+    },
+    {
+      "path": "assets/fonts/Newsreader_9pt-Regular.ttf",
+      "sha1": "9921fd350ec6511a4aadd759ab35581ccf258178"
+    },
+    {
+      "path": "assets/fonts/Newsreader_9pt-SemiBold.ttf",
+      "sha1": "6313ed88aa75b60c4add18f0a4e8efd1b43fbed6"
+    }
+  ]
+}

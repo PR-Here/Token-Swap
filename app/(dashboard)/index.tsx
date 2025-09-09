@@ -1,20 +1,19 @@
+import { Text } from '@/components';
+import { BLACK, PRIMARY_COLOR, WHITE } from '@/constant/colors';
+import { FontName } from '@/constant/fontName';
+import { useDashboard } from '@/hooks/useDashboard';
+import { IMAGES } from '@/utils/images';
+import { getHeight, getWidth } from '@/utils/size';
 import React from 'react';
 import {
-  Dimensions,
-  Image,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  View,
+    Dimensions,
+    Image,
+    ScrollView,
+    StyleSheet,
+    TouchableOpacity,
+    View,
 } from 'react-native';
 import { LineChart } from 'react-native-gifted-charts';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import Text from '../components/Text';
-import { BLACK, PRIMARY_COLOR, WHITE } from '../constant/colors';
-import { FontName } from '../constant/fontName';
-import { useDashboard } from '../hooks/useDashboard';
-import { IMAGES } from '../utils/images';
-import { getHeight, getWidth } from '../utils/size';
 
 const Dashboard = () => {
   const {
@@ -26,8 +25,8 @@ const Dashboard = () => {
   } = useDashboard();
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+    <View style={styles.container}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: getHeight(0) }}>
         {/* My Loopin Goal Section */}
         <View style={styles.goalCard}>
           <Text style={styles.goalLabel}>My Loopin Goal</Text>
@@ -191,7 +190,7 @@ const Dashboard = () => {
           </View>
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -201,7 +200,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: PRIMARY_COLOR,
-    paddingHorizontal: getWidth(16),
+    paddingHorizontal: getWidth(10),
+    paddingBottom: getHeight(10),
   },
   goalCard: {
     backgroundColor: WHITE,
@@ -214,7 +214,6 @@ const styles = StyleSheet.create({
     fontSize: getWidth(14),
     color: '#666',
     fontFamily: FontName.NewsreaderRegular,
-    marginBottom: getHeight(8),
   },
   goalRow: {
     flexDirection: 'row',
@@ -236,7 +235,6 @@ const styles = StyleSheet.create({
     backgroundColor: WHITE,
     borderRadius: getWidth(12),
     padding: getWidth(16),
-    marginBottom: getHeight(16),
   },
   btcHeader: {
     flexDirection: 'row',
@@ -353,7 +351,6 @@ const styles = StyleSheet.create({
     lineHeight: getHeight(20),
   },
   socialSection: {
-    marginBottom: getHeight(16),
   },
   socialIcons: {
     flexDirection: 'row',

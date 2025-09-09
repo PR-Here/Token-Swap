@@ -1,13 +1,12 @@
-import OnBoardingTwo from '@/components/onboarding/onBoardingTwo';
-import OnBordingOne from '@/components/onboarding/onBordingOne';
-import SkipButton from '@/components/onboarding/skipButton';
+import { OnBoardingOne, OnBoardingTwo } from '@/components';
 import { PRIMARY_COLOR, WHITE } from '@/constant/colors';
 import { FontName } from '@/constant/fontName';
 import useOnBoarding from '@/hooks/useOnBoarding';
 import { getHeight, getWidth } from '@/utils/size';
-import React, { useCallback } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import React, { useCallback, useEffect, useRef } from 'react';
+import { Animated, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Login from '../(auth)/login';
 
 const Onboarding = () => {
   const {
@@ -16,20 +15,42 @@ const Onboarding = () => {
     scrollViewRef,
     onboardingData,
     handleScroll,
-    handleSkip,
     renderDots,
   } = useOnBoarding();
 
   const styles = useStyles(screenWidth);
+  const dotsHeightAnim = useRef(new Animated.Value(getHeight(60))).current;
+
+  useEffect(() => {
+    Animated.timing(dotsHeightAnim, {
+      toValue: currentIndex === 2 ? 0 : getHeight(60),
+      duration: 300,
+      useNativeDriver: false,
+    }).start();
+  }, [currentIndex, dotsHeightAnim]);
 
   const renderOnboardingScreenComponent = useCallback((item: any, index: number) => {
-    return index === 0 ? <OnBordingOne /> : <OnBoardingTwo />;
-  }, []);
+    if (index === 0) return <OnBoardingOne />;
+    if (index === 1) return <OnBoardingTwo />;
+    return (
+      <View style={{ width: screenWidth }}>
+        <Login />
+      </View>
+    );
+  }, [screenWidth]);
 
   const renderDotsComponent = () => {
     return (
-      <View style={styles.dotsContainer}>
-        {renderDots().map((dot) => (
+      <Animated.View style={[
+        styles.dotsContainer,
+        { 
+          height: dotsHeightAnim, 
+          overflow: 'hidden',
+          paddingBottom: currentIndex === 2 ? 0 : getHeight(40),
+          paddingTop: currentIndex === 2 ? 0 : getHeight(20),
+        }
+      ]}>
+        {currentIndex !== 2 && renderDots().map((dot) => (
           <View
             key={dot.key}
             style={[
@@ -42,13 +63,12 @@ const Onboarding = () => {
             ]}
           />
         ))}
-      </View>
+      </Animated.View>
     );
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <SkipButton onPress={handleSkip} currentIndex={currentIndex} />
       <ScrollView
         ref={scrollViewRef}
         horizontal
@@ -79,9 +99,7 @@ const useStyles = (screenWidth: number) => {
       flex: 1,
     },
     slide: {
-      width: screenWidth,
       flex: 1,
-      paddingHorizontal: getWidth(20),
       paddingVertical: getHeight(16),
       justifyContent: 'center',
       alignItems: 'center',

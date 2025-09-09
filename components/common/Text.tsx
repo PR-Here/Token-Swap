@@ -1,8 +1,8 @@
 import React from 'react';
 import { Text as RNText, TextProps as RNTextProps, StyleSheet } from 'react-native';
-import { getFonts } from '../utils/size';
-import { BLACK, PRIMARY_COLOR } from '../constant/colors';
-import { FontName } from '../constant/fontName';
+import { BLACK, PRIMARY_COLOR } from '../../constant/colors';
+import { FontName } from '../../constant/fontName';
+import { getFonts } from '../../utils/size';
 
 export interface TextProps extends RNTextProps {
   color?: string;
@@ -45,4 +45,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Text; 
+export default Text;

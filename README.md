@@ -32,20 +32,22 @@ loopin/
 │       └── *.png (various icons)
 │
 ├── components/                   # Reusable UI components
-│   ├── Button.tsx               # Custom button component
-│   ├── Text.tsx                 # Custom text component
-│   ├── TextInput.tsx            # Custom text input component
-│   ├── Toast.tsx                # Toast notification component
-│   ├── AppHeader.tsx            # App header component
-│   ├── RatingStars.tsx          # Rating stars component
-│   ├── TermsAcceptance.tsx      # Terms acceptance component
-│   ├── login/                   # Login-specific components
-│   │   ├── money.tsx
-│   │   └── things.tsx
+│   ├── index.ts                 # Component exports
+│   ├── common/                  # Common reusable components
+│   │   ├── Button.tsx           # Custom button component
+│   │   ├── Text.tsx             # Custom text component
+│   │   ├── TextInput.tsx        # Custom text input component
+│   │   ├── Toast.tsx            # Toast notification component
+│   │   ├── AppHeader.tsx        # App header component
+│   │   ├── RatingStars.tsx      # Rating stars component
+│   │   └── TermsAcceptance.tsx  # Terms acceptance component
+│   ├── auth/                    # Authentication components
+│   │   └── login/               # Login-specific components
+│   │       ├── money.tsx
+│   │       └── things.tsx
 │   └── onboarding/              # Onboarding components
 │       ├── onBoardingOne.tsx
-│       ├── onBoardingTwo.tsx
-│       └── skipButton.tsx
+│       └── onBoardingTwo.tsx
 │
 ├── constant/                     # App constants
 │   ├── colors.ts                # Color palette

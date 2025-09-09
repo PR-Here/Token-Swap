@@ -1,4 +1,3 @@
-import { router } from 'expo-router';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { Dimensions, ScrollView } from 'react-native';
 import { IMAGES } from '../utils/images';
@@ -19,6 +18,11 @@ const useOnBoarding = () => {
       title: 'Secure and Fast Trading',
       description: 'Trade cryptocurrencies with confidence and speed.',
     },
+    {
+      image: IMAGES.ONBOARDING_LOGO,
+      title: 'Login to Continue',
+      description: 'Sign in to access your account and start trading.',
+    },
   ], []);
 
 
@@ -28,12 +32,10 @@ const useOnBoarding = () => {
     setCurrentIndex(index);
   }, []);
 
-  const handleSkip = useCallback(() => {
-    router.push('/login');
-  }, []);
 
   const renderDots = useCallback(() => {
-    return onboardingData.map((_, index) => ({
+    // Only show dots for first 2 screens (exclude login screen)
+    return onboardingData.slice(0, 2).map((_, index) => ({
       key: index,
       isActive: index === currentIndex,
     }));
@@ -44,7 +46,6 @@ const useOnBoarding = () => {
     currentIndex,
     scrollViewRef,
     handleScroll,
-    handleSkip,
     screenWidth,
     renderDots,
   };

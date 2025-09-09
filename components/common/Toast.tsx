@@ -1,9 +1,9 @@
 import { Ionicons } from '@expo/vector-icons';
 import React, { useCallback, useEffect, useRef } from 'react';
 import { Animated, Image, StyleSheet, View } from 'react-native';
-import { PRIMARY_COLOR, WHITE } from '../constant/colors';
-import { FontName } from '../constant/fontName';
-import { getHeight, getWidth } from '../utils/size';
+import { PRIMARY_COLOR, WHITE } from '../../constant/colors';
+import { FontName } from '../../constant/fontName';
+import { getHeight, getWidth } from '../../utils/size';
 import Text from './Text';
 
 export enum ToastIconType {

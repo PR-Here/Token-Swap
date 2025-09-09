@@ -1,14 +1,14 @@
 import React, { forwardRef, useState } from 'react';
 import {
-  TextInput as RNTextInput,
-  TextInputProps as RNTextInputProps,
-  StyleSheet,
-  TouchableOpacity,
-  View,
+    TextInput as RNTextInput,
+    TextInputProps as RNTextInputProps,
+    StyleSheet,
+    TouchableOpacity,
+    View,
 } from 'react-native';
-import { PRIMARY_COLOR, WHITE } from '../constant/colors';
-import { FontName } from '../constant/fontName';
-import { getFonts, getHeight, getWidth } from '../utils/size';
+import { PRIMARY_COLOR, WHITE } from '../../constant/colors';
+import { FontName } from '../../constant/fontName';
+import { getFonts, getHeight, getWidth } from '../../utils/size';
 import Text from './Text';
 
 export interface TextInputProps extends RNTextInputProps {

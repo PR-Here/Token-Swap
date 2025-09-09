@@ -1,10 +1,10 @@
-    import { Image, StyleSheet, View } from 'react-native';
+import { Text } from '@/components';
+import { PRIMARY_COLOR, WHITE } from '@/constant/colors';
+import { FontName } from '@/constant/fontName';
+import { IMAGES } from '@/utils/images';
+import { getHeight, getWidth } from '@/utils/size';
+import { Image, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { PRIMARY_COLOR, WHITE } from '../../constant/colors';
-import { FontName } from '../../constant/fontName';
-import { IMAGES } from '../../utils/images';
-import { getHeight, getWidth } from '../../utils/size';
-import Text from '../Text';
 
 const OnBoardingTwo = () => {
   return (

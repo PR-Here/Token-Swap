@@ -1,17 +1,27 @@
+import { Button, ButtonSize, Text } from '@/components';
+import Money from '@/components/auth/login/money';
+import Things from '@/components/auth/login/things';
+import { BG_COLOR, PRIMARY_COLOR, WHITE } from '@/constant/colors';
+import { FontName } from '@/constant/fontName';
 import useLogin, { Tab } from '@/hooks/useLogin';
+import { IMAGES } from '@/utils/images';
+import { getHeight, getWidth } from '@/utils/size';
+import { LinearGradient } from 'expo-linear-gradient';
+import { useEffect, useState } from 'react';
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Button from '../components/Button';
-import Money from '../components/login/money';
-import Text from '../components/Text';
-import { BG_COLOR, PRIMARY_COLOR, WHITE } from '../constant/colors';
-import { FontName } from '../constant/fontName';
-import { IMAGES } from '../utils/images';
-import { getHeight, getWidth } from '../utils/size';
-import Things from '@/components/login/things';
 
 const Login = () => {
   const { selectedTab, handleTabPress, handleRegisterPress } = useLogin();
+  const [buttonOffset, setButtonOffset] = useState(getHeight(60));
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setButtonOffset(0);
+    }, 1000); // 1 second delay
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -26,9 +36,14 @@ const Login = () => {
         source={IMAGES.LOGIN_BG_IMAGE}
         style={styles.bgImage}
       />
+      {/* Bottom Gradient Overlay */}
+      <LinearGradient
+        colors={['rgba(1, 8, 220, 0)', '#010476']}
+        locations={[0.135, 1]}
+        style={styles.gradientOverlay}
+      />
       <Text style={styles.text}>
-        Your financial goal is possible, tell us. We will match you to the right
-        opportunity.
+        {`Your financial goal is possible, tell us.\nWe will match you to the right opportunity.`}
       </Text>
       {/* Tabs */}
       <View style={styles.tabsContainer}>
@@ -73,18 +88,21 @@ const Login = () => {
         </View>
       </View>
       {/* Money or Things */}
-      <View style={{ height: getHeight(185), marginTop: getHeight(14) }}>
+      <View style={styles.contentContainer}>
         {selectedTab === Tab.MONEY && <Money />}
         {selectedTab === Tab.THINGS && <Things />}
       </View>
       {/* Button */}
-      <Button
-        title="Loopin"
-        onPress={handleRegisterPress}
-        style={{ marginTop: getHeight(177) }}
-      />
-      {/* let me look around first */}
-      <Text style={styles.lookAroundText}>Let me look around first</Text>
+      <View style={[styles.buttonContainer, { marginTop: buttonOffset }]}>
+        <Button
+          title="Loopin"
+          onPress={handleRegisterPress}
+          size={ButtonSize.LARGE}
+          style={styles.button}
+        />
+        {/* let me look around first */}
+        <Text style={styles.lookAroundText}>Let me look around first</Text>
+      </View>
     </SafeAreaView>
   );
 };
@@ -96,7 +114,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: PRIMARY_COLOR,
     paddingHorizontal: getWidth(20),
-    paddingTop: getHeight(20),
   },
   image: {
     width: getWidth(317),
@@ -106,8 +123,9 @@ const styles = StyleSheet.create({
     color: WHITE,
     fontSize: getWidth(14),
     fontFamily: FontName.NewsreaderRegular,
-    textAlign: 'center',
+    textAlign: 'left',
     marginTop: getHeight(16),
+    letterSpacing: getWidth(0.5),
   },
   tabsContainer: {
     flexDirection: 'row',
@@ -144,20 +162,40 @@ const styles = StyleSheet.create({
     fontSize: getWidth(32),
     fontFamily: FontName.NewsreaderSemiBold,
   },
+  contentContainer: {
+    flex: 1,
+    marginTop: getHeight(0),
+    justifyContent: 'center',
+  },
+  buttonContainer: {
+  },
   bgImage: {
     width: getWidth(360),
     height: getHeight(354),
     position: 'absolute',
-    bottom: -getHeight(10),
+    bottom: -getHeight(50),
+    left: getWidth(5),
     zIndex: -1,
+  },
+  gradientOverlay: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: getHeight(250),
+    zIndex: 0,
   },
   lookAroundText: {
     color: WHITE,
     fontSize: getWidth(12),
-    fontFamily: FontName.NewsreaderSemiBold,
+    fontFamily: FontName.NewsreaderExtraBold,
     textAlign: 'center',
     marginTop: getHeight(16),
-    marginBottom: getHeight(16),
     textDecorationLine: 'underline',
+  },
+  button: {
+    width: getWidth(327),
+    height: getHeight(58),
+
   },
 });

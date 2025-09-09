@@ -1,14 +1,14 @@
+import { PRIMARY_COLOR, WHITE } from '@/constant/colors';
+import { IMAGES } from '@/utils/images';
+import { getHeight, getWidth } from '@/utils/size';
 import { Tabs } from 'expo-router';
 import React from 'react';
 import { Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { PRIMARY_COLOR, WHITE } from '../../constant/colors';
-import { IMAGES } from '../../utils/images';
-import { getHeight, getWidth } from '../../utils/size';
 
 export default function TabLayout() {
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: PRIMARY_COLOR }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: PRIMARY_COLOR }} edges={['top', 'left', 'right', 'bottom']}>
       <Tabs
         screenOptions={{
           headerShown: false,
@@ -17,14 +17,13 @@ export default function TabLayout() {
             borderTopWidth: 0,
             height: getHeight(60),
             paddingBottom: getHeight(10),
-            paddingTop: getHeight(15),
+            paddingTop: getHeight(12),
             marginLeft: getWidth(16),
             marginRight: getWidth(16),
-            marginBottom: getHeight(16),
             borderRadius: getWidth(20),
           },
           tabBarActiveTintColor: 'black',
-          tabBarInactiveTintColor: 'gray',
+            tabBarInactiveTintColor: 'gray',
           tabBarShowLabel: false,
         }}
       >

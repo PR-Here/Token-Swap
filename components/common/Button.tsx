@@ -1,15 +1,15 @@
+import { BLACK, PRIMARY_COLOR, WHITE } from '@/constant/colors';
+import { getFonts, getHeight, getWidth } from '@/utils/size';
 import React from 'react';
 import {
-  TouchableOpacity,
-  TouchableOpacityProps,
-  StyleSheet,
-  ViewStyle,
-  TextStyle,
-  ActivityIndicator,
+    ActivityIndicator,
+    StyleSheet,
+    TextStyle,
+    TouchableOpacity,
+    TouchableOpacityProps,
+    ViewStyle,
 } from 'react-native';
 import Text from './Text';
-import { getFonts, getHeight, getWidth } from '../utils/size';
-import { BLACK, PRIMARY_COLOR, WHITE } from '../constant/colors';
 
 export enum ButtonVariant {
   PRIMARY = 'primary',
@@ -186,4 +186,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Button; 
+export default Button;

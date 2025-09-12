@@ -18,7 +18,7 @@ import {
 
 const { width: screenWidth } = Dimensions.get('window');
 
-const BinanceWebFlow = () => {
+const BinanceMobileFlow = () => {
     const [currentStep, setCurrentStep] = useState(0);
     const [selectedCoin, setSelectedCoin] = useState('BTC');
     const [selectedNetwork, setSelectedNetwork] = useState('BEP20');
@@ -59,64 +59,69 @@ const BinanceWebFlow = () => {
         }
     };
 
-    // 0 index
+    // 0 index - Mobile Login Steps
     const renderStep0 = () => (
         <View style={styles.stepContainer}>
             {/* Login Section */}
-            <View style={styles.sectionContainer}>
+            <View style={styles.loginSection}>
                 <View style={styles.textImageRow}>
                     <View style={styles.textSection}>
                         <Text style={styles.stepTitle}>Login</Text>
                         <Text style={styles.stepDescription}>Login to Binance</Text>
                     </View>
-                    <Image source={IMAGES.BINANCE_LOGIN} style={styles.stepImageSmall} />
+                    <Image source={IMAGES.BINANCE_WHITE_LOGIN} style={styles.stepImageSmall} />
                 </View>
             </View>
 
-            {/* Overview Section */}
-            <View style={styles.sectionContainer}>
-                <View style={styles.imageTextRow}>
-                    <Image source={IMAGES.BINANCE_DEPOSIT} style={styles.stepImageSmall} />
+            {/* Wallet Navigation Section */}
+            <View style={styles.walletSection}>
+                <View style={styles.textImageRow}>
                     <View style={styles.textSection}>
-                        <Text style={styles.stepTitle}>Overview</Text>
-                        <Text style={styles.stepDescription}>Click on the wallet icon and click on Overview</Text>
+                        <Text style={styles.stepTitle}>Go to Wallets</Text>
+                        <Text style={styles.stepDescription}>Click on the wallets in the bottom navigation</Text>
                     </View>
-                </View>
-            </View>
 
-            {/* Withdraw Section */}
-            <View style={styles.sectionContainer}>
-                <View style={styles.textImageColumn}>
-                    <View style={styles.textSectionFullWidth}>
-                        <Text style={styles.stepTitle}>Withdraw</Text>
-                        <Text style={[styles.stepDescription, { width: '100%' }]}>
-                            Once you're on the Overview page, locate the first block displaying your estimated balance and click "Withdraw."
-                        </Text>
-                    </View>
-                    <View style={styles.imageSectionFullWidth}>
-                        <Image source={IMAGES.BINANCE_ESTIMATED_BALANCE} style={styles.stepImageFullWidth} />
-                    </View>
                 </View>
+                <Image source={IMAGES.BINANCE_WHITE_BOTTOM_SHEET} style={styles.bottomNavigationImage} />
             </View>
         </View>
     );
 
+    // 1 index - Coin Selection
     const renderStep1 = () => (
         <View style={styles.stepContainer}>
             {/* Header */}
             <View style={styles.coinSelectionHeader}>
                 <Text style={styles.coinSelectionTitle}>Select Coins</Text>
                 <Text style={styles.coinSelectionSubtitle}>
-                    Select the coin you wish to transfer from your Binance balance to send to Loopin
+                    Select the coin you wish to transfer
+                    from your Binance balance to send to Loopin and you will arrive on the coin’s page
                 </Text>
             </View>
 
             {/* Main Card */}
-            <Image resizeMode='contain' source={IMAGES.BINANCE_SELECT_COIN} style={styles.binanceSelectCoinImage} />
+            <Image resizeMode='contain' source={IMAGES.BINANCE_WHITE_USDT} style={styles.binanceMobileImage} />
         </View>
     );
 
+    // 2 index - Withdraw to
     const renderStep2 = () => (
+        <View style={styles.stepContainer}>
+            {/* Header */}
+            <View style={styles.withdrawHeader}>
+                <Text style={styles.withdrawTitle}>Select Send via crypto network</Text>
+                <Text style={styles.withdrawSubtitle}>
+                    Select Withdrawal and
+                    select Send via crypto network
+                </Text>
+            </View>
+            {/* Main Card */}
+            <Image resizeMode='contain' source={IMAGES.BINANCE_WHITE_WITHDRAW} style={styles.binanceMobileImage} />
+        </View>
+    );
+
+    // 3 index - Network Selection
+    const renderStep3 = () => (
         <View style={styles.stepContainer}>
             {/* Header */}
             <View style={styles.withdrawHeader}>
@@ -138,11 +143,12 @@ const BinanceWebFlow = () => {
             </View>
 
             {/* Main Card */}
-            <Image resizeMode='contain' source={IMAGES.BINANCE_SELECT_COIN_ERROR} style={styles.binanceWithdrawImage} />
+            <Image resizeMode='contain' source={IMAGES.BINANCE_WHITE_SEND_USDT} style={styles.recentWithdrawImage} />
         </View>
     );
 
-    const renderStep3 = () => (
+    // 4 index - Amount Entry
+    const renderStep4 = () => (
         <View style={styles.stepContainer}>
             {/* Header */}
             <View style={styles.networkHeader}>
@@ -153,11 +159,12 @@ const BinanceWebFlow = () => {
             </View>
 
             {/* Main Card */}
-            <Image resizeMode='contain' source={IMAGES.BINANCE_WITHDRAW_TO} style={styles.binanceNetworkImage} />
+            <Image resizeMode='contain' source={IMAGES.BINANCE_WHITE_SEND_USDT} style={styles.binanceMobileImage} />
         </View>
     );
 
-    const renderStep4 = () => (
+    // 5 index - Withdraw Confirmation
+    const renderStep5 = () => (
         <View style={styles.stepContainer}>
             {/* Header */}
             <View style={styles.networkHeader}>
@@ -168,11 +175,12 @@ const BinanceWebFlow = () => {
             </View>
 
             {/* Main Card */}
-            <Image resizeMode='contain' source={IMAGES.BINANCE_WITHDRAW_TO_ERROR} style={styles.binanceNetworkImage} />
+            <Image resizeMode='contain' source={IMAGES.BINANCE_WHITE_SEND_USDT} style={styles.binanceMobileImage} />
         </View>
     );
 
-    const renderStep5 = () => (
+    // 6 index - Complete
+    const renderStep6 = () => (
         <View style={styles.stepContainer}>
             {/* Header */}
             <View style={styles.networkHeader}>
@@ -183,24 +191,24 @@ const BinanceWebFlow = () => {
             </View>
 
             {/* Main Card */}
-            <Image resizeMode='contain' source={IMAGES.BINANCE_ABOUT_NETWORK_FEE} style={styles.binanceNetworkImage} />
+            <Image resizeMode='contain' source={IMAGES.BINANCE_WHITE_USDT} style={styles.recentWithdrawImage} />
         </View>
     );
 
-    const renderStep6 = () => (
+    // 7 index - Complete
+    const renderStep7 = () => (
         <View style={styles.stepContainer}>
             {/* Header */}
-            <View style={[styles.networkHeader, { marginTop: getHeight(60) }]}>
+            <View style={[styles.networkHeader, { marginTop: getHeight(150) }]}>
                 <Text style={styles.networkTitle}>That’s it. It’s done.</Text>
                 <Text style={styles.networkSubtitle}>
+                    Come back to Loopin to confirm receipt of funds
                     (You can also check the status under the withdrawal tab on Binance)
                 </Text>
             </View>
-
-            {/* Main Card */}
-            <Image resizeMode='contain' source={IMAGES.BINANCE_RECENT_WITHDRAW} style={[styles.binanceNetworkImage, { marginTop: getHeight(20), width: getWidth(160), height: getHeight(77) }]} />
         </View>
     );
+
 
     const renderStep = (stepIndex: number) => {
         switch (stepIndex) {
@@ -218,6 +226,8 @@ const BinanceWebFlow = () => {
                 return renderStep5();
             case 6:
                 return renderStep6();
+            case 7:
+                return renderStep7();
             default:
                 return renderStep0();
         }
@@ -235,7 +245,7 @@ const BinanceWebFlow = () => {
                 }}
                 style={styles.scrollView}
             >
-                {Array.from({ length: 7 }, (_, index) => (
+                {Array.from({ length: 8 }, (_, index) => (
                     <View key={index} style={styles.stepCard}>
                         {renderStep(index)}
                     </View>
@@ -245,7 +255,7 @@ const BinanceWebFlow = () => {
             {/* Pagination Dots */}
             <View style={styles.paginationContainer}>
                 <View style={styles.dotsContainer}>
-                    {Array.from({ length: 7 }, (_, index) => (
+                    {Array.from({ length: 8 }, (_, index) => (
                         <View
                             key={index}
                             style={[
@@ -274,103 +284,90 @@ const styles = StyleSheet.create({
     stepContainer: {
         marginBottom: getHeight(0),
     },
-    sectionContainer: {
-        marginBottom: getHeight(20),
+    // Mobile step 0 styles
+    loginSection: {
+        marginBottom: getHeight(80),
+        marginTop: getHeight(60),
+    },
+    walletSection: {
+    },
+    textImageRow: {
+        flexDirection: 'row',
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+    textSection: {
+        flex: 1,
+        marginRight: getWidth(10),
     },
     stepTitle: {
         fontSize: getWidth(16),
         fontFamily: FontName.NewsreaderBold,
         color: WHITE,
+        marginBottom: getHeight(4),
     },
     stepDescription: {
-        fontSize: getWidth(13),
-        fontFamily: 'system',
+        fontSize: getWidth(14),
+        fontFamily: FontName.NewsreaderRegular,
         color: WHITE,
-        lineHeight: getHeight(22),
         opacity: 0.9,
-        marginBottom: getHeight(10),
     },
-    // Layout styles
-    textImageRow: {
+    buttonContainer: {
         flexDirection: 'row',
-        width: '100%',
-        marginTop: getHeight(13),
-    },
-    imageTextRow: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
+        backgroundColor: WHITE,
+        borderRadius: getWidth(8),
+        padding: getWidth(4),
         alignItems: 'center',
-        width: '100%',
-        marginTop: getHeight(0),
     },
-    textImageColumn: {
-        width: '100%',
-        alignItems: 'center',
-        marginTop: getHeight(0),
+    loginButton: {
+        paddingHorizontal: getWidth(16),
+        paddingVertical: getHeight(8),
+        borderRadius: getWidth(6),
+        backgroundColor: 'rgba(0, 0, 0, 0.1)',
+        marginRight: getWidth(4),
     },
-    textSection: {
-        marginRight: getWidth(10),
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-        width: getWidth(130),
+    signupButton: {
+        paddingHorizontal: getWidth(16),
+        paddingVertical: getHeight(8),
+        borderRadius: getWidth(6),
+        backgroundColor: '#FFD700',
     },
-    textSectionFullWidth: {
-        width: '100%',
-        justifyContent: 'flex-start',
+    loginButtonText: {
+        fontSize: getWidth(12),
+        fontFamily: FontName.NewsreaderMedium,
+        color: '#000000',
     },
-    imageSectionFullWidth: {
-        width: '100%',
-        alignItems: 'flex-start',
-        justifyContent: 'flex-start',
-        marginTop: getHeight(13),
+    signupButtonText: {
+        fontSize: getWidth(12),
+        fontFamily: FontName.NewsreaderMedium,
+        color: '#000000',
     },
     stepImageSmall: {
-        width: getWidth(156),
-        height: getWidth(74),
+        width: getWidth(187),
+        height: getHeight(32),
         resizeMode: 'contain',
-        borderRadius: getWidth(8),
     },
-    stepImageFullWidth: {
-        width: getWidth(297),
-        height: getHeight(51),
+    bottomNavigationImage: {
+        width: getWidth(298),
+        height: getHeight(45),
         resizeMode: 'contain',
-        borderRadius: getWidth(8),
+        marginTop: getHeight(16),
+        alignSelf: 'flex-start',
     },
-    binanceSelectCoinImage: {
-        width: getWidth(224),
-        height: getHeight(180),
-        borderRadius: getWidth(8),
-        alignSelf: 'center',
-        marginTop: getHeight(10),
-    },
-    binanceWithdrawImage: {
-        width: getWidth(232),
-        height: getHeight(180),
-        borderRadius: getWidth(8),
-        alignSelf: 'center',
-        marginTop: getHeight(0),
-    },
-    binanceNetworkImage: {
-        width: getWidth(248),
-        height: getHeight(196),
-        borderRadius: getWidth(8),
-        alignSelf: 'center',
-        marginTop: getHeight(10),
-    },
-    // Network selection styles
-    networkHeader: {
+    // Mobile specific styles
+    mobileHeader: {
         alignItems: 'center',
         marginBottom: getHeight(20),
         marginTop: getHeight(40),
     },
-    networkTitle: {
+    mobileTitle: {
         fontSize: getWidth(20),
         fontFamily: FontName.NewsreaderBold,
         color: WHITE,
         marginBottom: getHeight(8),
-        textAlign: 'center',
     },
-    networkSubtitle: {
+    mobileSubtitle: {
         fontSize: getWidth(14),
         fontFamily: 'system',
         color: WHITE,
@@ -379,11 +376,18 @@ const styles = StyleSheet.create({
         lineHeight: getHeight(20),
         paddingHorizontal: getWidth(20),
     },
+    binanceMobileImage: {
+        width: getWidth(248),
+        height: getHeight(196),
+        borderRadius: getWidth(8),
+        alignSelf: 'center',
+        marginTop: getHeight(10),
+    },
     // Coin selection styles
     coinSelectionHeader: {
         alignItems: 'center',
         marginBottom: getHeight(20),
-        marginTop: getHeight(41),
+        marginTop: getHeight(40),
     },
     coinSelectionTitle: {
         fontSize: getWidth(20),
@@ -403,7 +407,7 @@ const styles = StyleSheet.create({
     withdrawHeader: {
         alignItems: 'center',
         marginBottom: getHeight(20),
-        marginTop: getHeight(16),
+        marginTop: getHeight(20),
     },
     withdrawTitle: {
         fontSize: getWidth(20),
@@ -450,203 +454,34 @@ const styles = StyleSheet.create({
     copyButton: {
         padding: getWidth(4),
     },
-    withdrawCard: {
-        backgroundColor: 'rgba(255, 255, 255, 0.1)',
-        borderRadius: getWidth(16),
-        padding: getWidth(20),
-        marginHorizontal: getWidth(20),
-    },
-    inputSection: {
-        marginBottom: getHeight(16),
-    },
-    inputLabelContainer: {
-        flexDirection: 'row',
+    // Network selection styles
+    networkHeader: {
         alignItems: 'center',
-        marginBottom: getHeight(8),
-    },
-    inputLabel: {
-        fontSize: getWidth(14),
-        fontFamily: FontName.NewsreaderMedium,
-        color: WHITE,
-        marginRight: getWidth(8),
-    },
-    inputSubLabel: {
-        fontSize: getWidth(12),
-        fontFamily: FontName.NewsreaderRegular,
-        color: 'rgba(255, 255, 255, 0.7)',
-    },
-    addressInputContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: 'rgba(255, 255, 255, 0.1)',
-        borderRadius: getWidth(8),
-        paddingHorizontal: getWidth(12),
-        paddingVertical: getHeight(12),
-        borderWidth: 1,
-        borderColor: 'rgba(255, 255, 255, 0.2)',
-    },
-    addressInputError: {
-        borderColor: '#EF4444', // Red border for error state
-    },
-    addressInput: {
-        flex: 1,
-        color: WHITE,
-        fontSize: getWidth(14),
-        fontFamily: FontName.NewsreaderRegular,
-    },
-    pasteButton: {
-        padding: getWidth(4),
-        marginLeft: getWidth(8),
-    },
-    pasteIcon: {
-        width: getWidth(16),
-        height: getWidth(16),
-        tintColor: 'rgba(255, 255, 255, 0.7)',
-    },
-    errorText: {
-        fontSize: getWidth(12),
-        fontFamily: FontName.NewsreaderRegular,
-        color: '#EF4444',
-        marginTop: getHeight(4),
-    },
-    coinSelectionCard: {
-        backgroundColor: 'rgba(255, 255, 255, 0.1)',
-        borderRadius: getWidth(16),
-        padding: getWidth(20),
-    },
-    stepRow: {
-        flexDirection: 'row',
         marginBottom: getHeight(20),
+        marginTop: getHeight(40),
     },
-    stepHeader: {
-        alignItems: 'center',
-        marginRight: getWidth(16),
-    },
-    stepNumber: {
-        width: getWidth(32),
-        height: getWidth(32),
-        borderRadius: getWidth(16),
-        backgroundColor: 'rgba(255, 255, 255, 0.2)',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    stepNumberActive: {
-        backgroundColor: '#FFD700',
-        transform: [{ rotate: '45deg' }],
-    },
-    stepNumberText: {
-        color: WHITE,
-        fontSize: getWidth(14),
+    networkTitle: {
+        fontSize: getWidth(20),
         fontFamily: FontName.NewsreaderBold,
-    },
-    stepLine: {
-        width: 2,
-        height: getHeight(40),
-        backgroundColor: 'rgba(255, 255, 255, 0.2)',
-        marginTop: getHeight(8),
-    },
-    stepContent: {
-        flex: 1,
-    },
-    coinLogoContainer: {
-        width: getWidth(40),
-        height: getWidth(40),
-        borderRadius: getWidth(20),
-        backgroundColor: 'rgba(255, 255, 255, 0.1)',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginRight: getWidth(12),
-    },
-    amountInputContainer: {
-        backgroundColor: 'rgba(255, 255, 255, 0.1)',
-        borderRadius: getWidth(8),
-        paddingHorizontal: getWidth(12),
-        paddingVertical: getHeight(12),
-    },
-    searchContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: 'rgba(255, 255, 255, 0.1)',
-        borderRadius: getWidth(8),
-        paddingHorizontal: getWidth(12),
-        paddingVertical: getHeight(8),
-        borderWidth: 1,
-        borderColor: '#FFD700',
-        marginBottom: getHeight(12),
-    },
-    searchIcon: {
-        width: getWidth(16),
-        height: getWidth(16),
-        marginRight: getWidth(8),
-        tintColor: 'rgba(255, 255, 255, 0.7)',
-    },
-    searchInput: {
-        flex: 1,
         color: WHITE,
-        fontSize: getWidth(14),
-        fontFamily: FontName.NewsreaderRegular,
-    },
-    clearIcon: {
-        color: 'rgba(255, 255, 255, 0.7)',
-        fontSize: getWidth(18),
-        marginLeft: getWidth(8),
-    },
-    coinList: {
-        marginTop: getHeight(8),
-    },
-    coinItem: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingVertical: getHeight(12),
-        paddingHorizontal: getWidth(12),
-        borderRadius: getWidth(8),
         marginBottom: getHeight(8),
+        textAlign: 'center',
     },
-    coinItemSelected: {
-        backgroundColor: 'rgba(255, 255, 255, 0.15)',
-    },
-    coinLogo: {
-        width: getWidth(24),
-        height: getWidth(24),
-        borderRadius: getWidth(12),
-    },
-    coinInfo: {
-        flex: 1,
-    },
-    coinSymbol: {
+    networkSubtitle: {
         fontSize: getWidth(14),
-        fontFamily: FontName.NewsreaderBold,
+        fontFamily: 'system',
         color: WHITE,
+        textAlign: 'center',
+        opacity: 0.9,
+        lineHeight: getHeight(20),
+        paddingHorizontal: getWidth(20),
     },
-    coinName: {
-        fontSize: getWidth(12),
-        fontFamily: FontName.NewsreaderRegular,
-        color: 'rgba(255, 255, 255, 0.7)',
-    },
-    networkContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    recentWithdrawImage: {
+        width: getWidth(189),
+        height: getHeight(191),
         borderRadius: getWidth(8),
-        paddingHorizontal: getWidth(12),
-        paddingVertical: getHeight(12),
-        marginTop: getHeight(8),
-    },
-    networkText: {
-        color: 'rgba(255, 255, 255, 0.7)',
-        fontSize: getWidth(14),
-        fontFamily: FontName.NewsreaderRegular,
-    },
-    dropdownIcon: {
-        width: getWidth(16),
-        height: getWidth(16),
-        tintColor: 'rgba(255, 255, 255, 0.7)',
-    },
-    amountInput: {
-        color: WHITE,
-        fontSize: getWidth(14),
-        fontFamily: FontName.NewsreaderRegular,
+        alignSelf: 'center',
+        marginTop: getHeight(-10),
     },
     // Pagination styles
     paginationContainer: {
@@ -672,4 +507,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default BinanceWebFlow;
+export default BinanceMobileFlow;

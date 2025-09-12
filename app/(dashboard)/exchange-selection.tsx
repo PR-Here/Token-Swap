@@ -1,6 +1,7 @@
 import { Text } from '@/components';
 import Button, { ButtonSize } from '@/components/common/Button';
-import { Exchange, ExchangeTabs, SubTabs } from '@/components/exchange';
+import { CoinSelectionMobile, CoinSelectionWeb, Exchange, ExchangeTabs, SubTabs } from '@/components/exchange';
+import BinanceMobileFlow from '@/components/exchange/BinanceMobileFlow';
 import BinanceWebFlow from '@/components/exchange/BinanceWebFlow';
 import { PRIMARY_COLOR, WHITE } from '@/constant/colors';
 import { FontName } from '@/constant/fontName';
@@ -12,6 +13,7 @@ import {
     StyleSheet,
     View
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 export enum Tab {
@@ -36,12 +38,33 @@ const ExchangeSelection = () => {
         if (selectedExchange === 'BINANCE' && selectedTab === Tab.WEB) {
             return <BinanceWebFlow />;
         }
+        if (selectedExchange === 'BINANCE' && selectedTab === Tab.MOBILE) {
+            return <BinanceMobileFlow />;
+        }
+        if (selectedExchange === 'OKX' && selectedTab === Tab.WEB) {
+            return <BinanceWebFlow />;
+        }
+        if (selectedExchange === 'OKX' && selectedTab === Tab.MOBILE) {
+            return <BinanceMobileFlow />;
+        }
+        if (selectedExchange === 'COINBASE' && selectedTab === Tab.WEB) {
+            return <CoinSelectionWeb />;
+        }
+        if (selectedExchange === 'COINBASE' && selectedTab === Tab.MOBILE) {
+            return <CoinSelectionMobile />;
+        }
+        if (selectedExchange === 'BYBIT' && selectedTab === Tab.WEB) {
+            return <BinanceWebFlow />;
+        }
+        if (selectedExchange === 'BYBIT' && selectedTab === Tab.MOBILE) {
+            return <BinanceMobileFlow />;
+        }
         // Add other flows here as needed
         return <BinanceWebFlow />; // Default fallback
     };
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <StatusBar barStyle="light-content" backgroundColor={PRIMARY_COLOR} />
 
             {/* Header */}
@@ -76,7 +99,7 @@ const ExchangeSelection = () => {
                 size={ButtonSize.MEDIUM}
                 style={styles.actionButton}
             />
-        </View>
+        </SafeAreaView>
     );
 };
 

@@ -65,6 +65,7 @@ export const IMAGES = {
     BINANCE_WHITE_USDT: require('../../assets/images/binance/white/usdt.png'),
     BINANCE_WHITE_WITHDRAW: require('../../assets/images/binance/white/withdraw.png'),
     OKX_LOGO: require('../../assets/images/binance/white/ohxlogo.png'),
+    BINANCE_WHITE_BOTTOM_SHEET: require('../../assets/images/binance/white/bottomsheet.png'),
     
     // Bybit images
     BYBIT_BASE_ASSETS: require('../../assets/images/bybit/baseAssets.png'),

@@ -1,4 +1,7 @@
-export { default as CoinSelection } from './CoinSelection';
+export { default as BinanceMobileFlow } from './BinanceMobileFlow';
+export { default as BinanceWebFlow } from './BinanceWebFlow';
+export { default as CoinSelectionMobile } from './CoinSelectionMobile';
+export { default as CoinSelectionWeb } from './CoinSelectionWeb';
 export { default as ExchangeTabs } from './ExchangeTabs';
 export { default as PaginationDots } from './PaginationDots';
 export { default as StepComponent } from './StepComponent';

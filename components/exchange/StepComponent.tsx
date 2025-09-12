@@ -4,7 +4,7 @@ import { FontName } from '@/constant/fontName';
 import { getHeight, getWidth } from '@/utils/size';
 import React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
-import CoinSelection from './CoinSelection';
+import CoinSelectionWeb from './CoinSelectionWeb';
 
 export interface StepData {
     title?: string;
@@ -63,7 +63,7 @@ const StepComponent: React.FC<StepComponentProps> = ({ step }) => {
             case 'text-image-row-column':
                 return renderTextImageColumn(section);
             case 'coin-selection':
-                return <CoinSelection />;
+                return <CoinSelectionWeb />;
             default:
                 return renderTextImageRow(section);
         }

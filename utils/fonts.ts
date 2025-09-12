@@ -16,5 +16,7 @@ export const loadFonts = async () => {
     'Newsreader-MediumItalic': require('../assets/fonts/Newsreader_60pt-MediumItalic.ttf'),
     'Newsreader-SemiBold': require('../assets/fonts/Newsreader_60pt-SemiBold.ttf'),
     'Newsreader-SemiBoldItalic': require('../assets/fonts/Newsreader_60pt-SemiBoldItalic.ttf'),
+    // SF Pro Text fonts
+
   });
 };

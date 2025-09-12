@@ -1,5 +1,5 @@
 import { Button, Text } from '@/components';
-import { PRIMARY_COLOR, WHITE } from '@/constant/colors';
+import { GREEN, PRIMARY_COLOR, RED, WHITE } from '@/constant/colors';
 import { FontName } from '@/constant/fontName';
 import { useVerifyEmail } from '@/hooks/useVerifyEmail';
 import { VerifyEmailSchema } from '@/schema';
@@ -20,83 +20,73 @@ const VerifyEmail = () => {
     handleOtpChange,
     handleKeyPress,
     handleSubmit,
-    handleResendCode,
-    handleBackToRegister,
+    handleResendOTP,
   } = useVerifyEmail();
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.title}>Verify Your Email</Text>
-        <Text style={styles.subtitle}>
-          We've sent a verification code to your email address
-        </Text>
+        <Text style={styles.title}>Verify Email</Text>
+        <Text style={styles.subtitle}>OTP sent to rainy@gmail.com. Enter within 2 mins.</Text>
 
         <Formik
           initialValues={initialValues}
           validationSchema={VerifyEmailSchema}
           onSubmit={handleSubmit}
         >
-          {({ handleSubmit, isSubmitting }) => (
-            <View style={styles.form}>
-              <View style={styles.otpContainer}>
-                {otpValues.map((value, index) => (
-                  <RNTextInput
-                    key={index}
-                    ref={inputRefs[index]}
-                    style={[
-                      styles.otpInput,
-                      value && styles.otpInputFilled,
-                    ]}
-                    value={value}
-                    onChangeText={(text) => handleOtpChange(text, index)}
-                    onKeyPress={(e) => handleKeyPress(e, index)}
-                    keyboardType="numeric"
-                    maxLength={1}
-                    textAlign="center"
-                    selectTextOnFocus
-                  />
-                ))}
-              </View>
+          {({ handleSubmit, isSubmitting, errors, touched, submitCount, setFieldValue }) => {
+            const hasOtpError = !!errors.otp && ((touched as any).otp || (submitCount ?? 0) > 0);
+            React.useEffect(() => {
+              setFieldValue('otp', otpValues.join(''));
+            }, [otpValues, setFieldValue]);
+            return (
+              <View style={styles.form}>
+                <View style={styles.otpContainer}>
+                  {otpValues.map((value, index) => (
+                    <RNTextInput
+                      key={index}
+                      ref={(el) => {
+                        inputRefs.current[index] = el;
+                      }}
+                      style={[
+                        styles.otpInput,
+                        hasOtpError && styles.otpInputError,
+                      ]}
+                      value={value}
+                      onChangeText={(text) => handleOtpChange(text, index)}
+                      onKeyPress={({ nativeEvent }) => handleKeyPress(nativeEvent.key, index)}
+                      keyboardType="numeric"
+                      maxLength={1}
+                      textAlign="center"
+                      placeholder="-"
+                      placeholderTextColor={'rgba(255,255,255,0.6)'}
+                      selectTextOnFocus
+                    />
+                  ))}
+                </View>
 
-              <View style={styles.timerContainer}>
-                <Text style={styles.timerText}>
-                  Resend code in {formatTime(timeLeft)}
-                </Text>
+                <View style={styles.timerContainer}>
+                  <Text style={styles.timerText}>Code expires in {formatTime(timeLeft)}</Text>
+                </View>
+
+                <Button
+                  title="Continue"
+                  onPress={() => handleSubmit()}
+                  loading={isSubmitting}
+                  style={styles.button}
+                  fullWidth
+                />
+
                 <TouchableOpacity
-                  onPress={handleResendCode}
+                  onPress={handleResendOTP}
                   disabled={timeLeft > 0 || isResending}
-                  style={[
-                    styles.resendButton,
-                    (timeLeft > 0 || isResending) && styles.resendButtonDisabled,
-                  ]}
+                  style={[styles.resendWrapper, (timeLeft > 0 || isResending) && { opacity: 0.5 }]}
                 >
-                  <Text
-                    style={[
-                      styles.resendText,
-                      (timeLeft > 0 || isResending) && styles.resendTextDisabled,
-                    ]}
-                  >
-                    {isResending ? 'Resending...' : 'Resend Code'}
-                  </Text>
+                  <Text style={styles.resendCta}>{isResending ? 'RESENDING...' : 'RESEND OTP'}</Text>
                 </TouchableOpacity>
               </View>
-
-              <Button
-                title="Verify Email"
-                onPress={handleSubmit}
-                loading={isSubmitting}
-                style={styles.button}
-              />
-
-              <TouchableOpacity
-                onPress={handleBackToRegister}
-                style={styles.backButton}
-              >
-                <Text style={styles.backText}>Back to Register</Text>
-              </TouchableOpacity>
-            </View>
-          )}
+            );
+          }}
         </Formik>
       </View>
     </SafeAreaView>
@@ -119,14 +109,14 @@ const styles = StyleSheet.create({
     fontSize: getWidth(28),
     fontFamily: FontName.NewsreaderBold,
     color: WHITE,
-    textAlign: 'center',
+    textAlign: 'left',
     marginBottom: getHeight(8),
   },
   subtitle: {
-    fontSize: getWidth(16),
+    fontSize: getWidth(14),
     fontFamily: FontName.NewsreaderRegular,
     color: WHITE,
-    textAlign: 'center',
+    textAlign: 'left',
     marginBottom: getHeight(40),
     opacity: 0.8,
   },
@@ -136,62 +126,50 @@ const styles = StyleSheet.create({
   otpContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: getHeight(32),
-    paddingHorizontal: getWidth(20),
+    marginBottom: getHeight(12),
+    paddingHorizontal: getWidth(0),
   },
   otpInput: {
-    width: getWidth(50),
-    height: getHeight(60),
-    borderWidth: 2,
+    width: getWidth(48),
+    height: getHeight(48),
+    borderWidth: 1,
     borderColor: WHITE,
-    borderRadius: getWidth(8),
-    fontSize: getWidth(24),
-    fontFamily: FontName.NewsreaderBold,
+    borderRadius: getWidth(4),
+    fontSize: getWidth(20),
+    fontFamily: FontName.NewsreaderMedium,
     color: WHITE,
     backgroundColor: 'transparent',
+    marginRight: getWidth(8),
   },
   otpInputFilled: {
     borderColor: PRIMARY_COLOR,
     backgroundColor: 'rgba(1, 8, 220, 0.1)',
   },
+  otpInputError: {
+    borderColor: RED,
+  },
   timerContainer: {
-    alignItems: 'center',
+    alignItems: 'flex-start',
     marginBottom: getHeight(32),
   },
   timerText: {
     fontSize: getWidth(14),
     fontFamily: FontName.NewsreaderRegular,
-    color: WHITE,
+    color: GREEN,
     marginBottom: getHeight(8),
-  },
-  resendButton: {
-    paddingVertical: getHeight(8),
-    paddingHorizontal: getWidth(16),
-  },
-  resendButtonDisabled: {
-    opacity: 0.5,
-  },
-  resendText: {
-    fontSize: getWidth(14),
-    fontFamily: FontName.NewsreaderSemiBold,
-    color: PRIMARY_COLOR,
-    textDecorationLine: 'underline',
-  },
-  resendTextDisabled: {
-    color: WHITE,
-    textDecorationLine: 'none',
   },
   button: {
     marginBottom: getHeight(24),
   },
-  backButton: {
+  resendWrapper: {
     alignItems: 'center',
     paddingVertical: getHeight(12),
   },
-  backText: {
-    fontSize: getWidth(14),
-    fontFamily: FontName.NewsreaderRegular,
+  resendCta: {
+    fontSize: getWidth(12),
+    fontFamily: FontName.NewsreaderSemiBold,
     color: WHITE,
     textDecorationLine: 'underline',
+    letterSpacing: 1,
   },
 });

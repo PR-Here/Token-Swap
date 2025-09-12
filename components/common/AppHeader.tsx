@@ -8,7 +8,7 @@ import Text from './Text';
 
 interface AppHeaderProps {
   title: string;
-  onBackPress: () => void;
+  onBackPress?: () => void;
 }
 
 const AppHeader: React.FC<AppHeaderProps> = ({ title, onBackPress }) => {
@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     fontSize: getWidth(18),
     fontFamily: FontName.NewsreaderSemiBold,
     color: WHITE,
-    marginLeft: getWidth(8),
+    marginLeft: getWidth(2),
+    marginBottom: getHeight(2),
   },
 });

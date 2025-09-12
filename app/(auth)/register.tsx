@@ -99,14 +99,14 @@ const styles = StyleSheet.create({
     fontSize: getWidth(28),
     fontFamily: FontName.NewsreaderBold,
     color: WHITE,
-    textAlign: 'center',
+    textAlign: 'left',
     marginBottom: getHeight(8),
   },
   subtitle: {
     fontSize: getWidth(16),
     fontFamily: FontName.NewsreaderRegular,
     color: WHITE,
-    textAlign: 'center',
+    textAlign: 'left',
     marginBottom: getHeight(32),
     opacity: 0.8,
   },
@@ -136,6 +136,8 @@ const styles = StyleSheet.create({
   },
   underlinedText: {
     textDecorationLine: 'underline',
+    color: WHITE,
+    fontSize: getWidth(12),
   },
   bottomButton: {
     marginTop: 'auto',

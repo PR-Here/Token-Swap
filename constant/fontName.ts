@@ -13,4 +13,6 @@ export const FontName = {
     NewsreaderLightItalic: 'Newsreader-LightItalic',
     NewsreaderExtraLightItalic: 'Newsreader-ExtraLightItalic',
     NewsreaderExtraBoldItalic: 'Newsreader-ExtraBoldItalic',
+    // SF Pro Text fonts
+    SFProTextUltralightItalic: 'SF-Pro-Text-UltralightItalic',
   };

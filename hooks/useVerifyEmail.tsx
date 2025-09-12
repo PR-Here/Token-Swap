@@ -63,11 +63,8 @@ export const useVerifyEmail = () => {
         const otpString = otpValues.join('');
         console.log({ otpString });
         // Simulate OTP verification
-        if (otpString == '123456') {
-            router.push('/create-password');
-        } else {
-            // Show error - handled by formik validation
-        }
+        router.push('/(tabs)' as any);
+
     }, [otpValues]);
 
     const handleResendOTP = useCallback(async () => {

@@ -5,12 +5,12 @@ import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useCallback } from 'react';
 import {
-    Dimensions,
-    StatusBar,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  Dimensions,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import { CopilotProvider, useCopilot, walkthroughable } from 'react-native-copilot';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -76,14 +76,14 @@ const TutorialContent = () => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor={PRIMARY_COLOR} />
-      
+
       {/* Semi-transparent overlay background */}
       <LinearGradient
         colors={['#0108DC', 'rgba(1, 8, 220, 0.5)', '#0108DC']}
         locations={[0.2015, 0.517, 0.9588]}
         style={styles.overlayBackground}
       />
-      
+
       {/* Header */}
       <View style={[styles.header, styles.contentAboveOverlay]}>
         <View style={styles.profileContainer}>
@@ -129,10 +129,10 @@ const TutorialContent = () => {
             name: tutorialSteps[currentStep].id,
           }}
         >
-           <LinearGradient
-             colors={['transparent', 'transparent', 'transparent', 'transparent']}
-             style={styles.cardGradient}
-           >
+          <LinearGradient
+            colors={['transparent', 'transparent', 'transparent', 'transparent']}
+            style={styles.cardGradient}
+          >
             {/* Card Content - Transparent to show home screen behind */}
             <View style={styles.transparentContent}>
               {/* All content is transparent - only border is visible */}
@@ -141,19 +141,19 @@ const TutorialContent = () => {
           </LinearGradient>
         </CopilotView>
 
-         {/* Gesture Icon Overlay */}
-         <View style={[
-           styles.gestureOverlay,
-           currentStep === 4 && styles.gestureOverlayTop, // For "Swipe up to Share"
-           styles.contentAboveOverlay
-         ]}>
-           <Ionicons
-             name={getGestureIcon(tutorialSteps[currentStep].gesture)}
-             size={40}
-             color={WHITE}
-           />
-           <Text style={styles.gestureText}>{tutorialSteps[currentStep].title}</Text>
-         </View>
+        {/* Gesture Icon Overlay */}
+        <View style={[
+          styles.gestureOverlay,
+          currentStep === 4 && styles.gestureOverlayTop, // For "Swipe up to Share"
+          styles.contentAboveOverlay
+        ]}>
+          <Ionicons
+            name={getGestureIcon(tutorialSteps[currentStep].gesture)}
+            size={40}
+            color={WHITE}
+          />
+          <Text style={styles.gestureText}>{tutorialSteps[currentStep].title}</Text>
+        </View>
       </View>
 
       {/* Bottom Navigation */}

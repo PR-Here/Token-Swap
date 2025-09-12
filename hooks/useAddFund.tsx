@@ -1,10 +1,14 @@
 import { router } from 'expo-router';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useToast } from '../context/ToastContext';
 
 export const useAddFund = () => {
   const [amount, setAmount] = useState('500.00');
   const { showToast } = useToast();
+
+  useEffect(() => {
+    showToast('Welcome to Loopin. Invest to your heart’s content.');
+  }, []);
 
   const handleTopUp = useCallback(() => {
     // Handle top up logic
@@ -13,7 +17,7 @@ export const useAddFund = () => {
 
   const handleAddFunds = useCallback(() => {
     showToast(`Adding $${amount} to your account added successfully`, 3000);
-    router.push('/(tabs)' as any);
+    router.push('/(dashboard)/exchange-selection' as any);
   }, [amount, showToast]);
 
   return {

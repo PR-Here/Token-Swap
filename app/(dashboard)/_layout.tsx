@@ -11,7 +11,8 @@ export default function DashboardLayout() {
     >
       <Stack.Screen name="index" />
       <Stack.Screen name="addFund" />
-      <Stack.Screen name="guest-dashboard" />
+      <Stack.Screen name="token-dashboard" />
+      <Stack.Screen name="exchange-selection" />
     </Stack>
   );
 }
